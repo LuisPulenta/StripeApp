@@ -17,12 +17,7 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Pagar'),
           actions: [
-            IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () async {
-                  mostrarAlerta(context, 'Aviso!!!!',
-                      'Con este mensaje te estoy avisando algo!!');
-                })
+            IconButton(icon: const Icon(Icons.add), onPressed: () async {})
           ],
           centerTitle: true,
         ),
