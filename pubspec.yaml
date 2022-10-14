@@ -38,7 +38,7 @@ dependencies:
   flutter_bloc: ^8.0.0
   bloc: ^8.0.1
   flutter_credit_card: ^3.0.4
-  dio: ^3.0.10
+  dio: ^4.0.4
   stripe_payment: ^1.0.7
 
 dev_dependencies:

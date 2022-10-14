@@ -25,10 +25,14 @@ class HomeScreen extends StatelessWidget {
             IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () async {
+                  mostrarLoading(context);
+
                   final amount = pagarBloc.state.montoPagarString;
                   final currency = pagarBloc.state.moneda;
                   final resp = await stripeService.pagarConNuevaTarjeta(
                       amount, currency);
+
+                  Navigator.pop(context);
 
                   if (resp.ok) {
                     mostrarAlerta(context, 'Tarjeta Ok', 'Todo correcto');
