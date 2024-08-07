@@ -20,6 +20,7 @@ class StripeService {
       contentType: Headers.formUrlEncodedContentType,
       headers: {'Authorization': 'Bearer ${StripeService._secretKey}'});
 
+//--------------------------------------------------------------------------
   void init() {
     StripePayment.setOptions(
       StripeOptions(
@@ -27,6 +28,7 @@ class StripeService {
     );
   }
 
+//--------------------------------------------------------------------------
   Future<StripeCustomResponse> pagarConTarjetaExistente(
       String amount, String currency, CreditCard card) async {
     try {
@@ -41,6 +43,7 @@ class StripeService {
     }
   }
 
+//--------------------------------------------------------------------------
   Future<StripeCustomResponse> pagarConNuevaTarjeta(
       String amount, String currency) async {
     try {
@@ -55,21 +58,24 @@ class StripeService {
     }
   }
 
+//--------------------------------------------------------------------------
   Future pagarApplePayGooglePay(String amount, String currency) async {
     try {
       final newAmount = double.parse(amount) / 100;
       final token = await StripePayment.paymentRequestWithNativePay(
-          androidPayOptions: AndroidPayPaymentRequest(
-              currencyCode: currency, totalPrice: amount),
-          applePayOptions: ApplePayPaymentOptions(
-              countryCode: 'US',
-              currencyCode: currency,
-              items: [
-                ApplePayItem(
-                  label: 'Super producto 1',
-                  amount: '$newAmount',
-                )
-              ]));
+        androidPayOptions: AndroidPayPaymentRequest(
+            currencyCode: currency, totalPrice: amount),
+        applePayOptions: ApplePayPaymentOptions(
+          countryCode: 'US',
+          currencyCode: currency,
+          items: [
+            ApplePayItem(
+              label: 'Super producto 1',
+              amount: '$newAmount',
+            ),
+          ],
+        ),
+      );
 
       final paymentMethod =
           await StripePayment.createPaymentMethod(PaymentMethodRequest(
@@ -87,6 +93,7 @@ class StripeService {
     }
   }
 
+//--------------------------------------------------------------------------
   Future _createPaymentIntent(String amount, String currency) async {
     try {
       final dio = Dio();
@@ -104,6 +111,7 @@ class StripeService {
     }
   }
 
+//--------------------------------------------------------------------------
   Future<StripeCustomResponse> _realizarPago(
       String amount, String currency, PaymentMethod paymentMethod) async {
     try {

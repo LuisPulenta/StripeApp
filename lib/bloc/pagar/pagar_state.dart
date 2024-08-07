@@ -10,7 +10,7 @@ class PagarState {
   String get montoPagarString => '${(montoPagar * 100).floor()}';
 
   const PagarState(
-      {this.montoPagar = 375.55,
+      {this.montoPagar = 123.45,
       this.moneda = 'USD',
       this.tarjetaActiva = false,
       this.tarjeta});
