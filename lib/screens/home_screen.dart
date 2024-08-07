@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
               height: size.height,
               top: 200,
               child: PageView.builder(
-                  controller: PageController(viewportFraction: 0.9),
+                  controller: PageController(viewportFraction: 0.8),
                   physics: const BouncingScrollPhysics(),
                   itemCount: tarjetas.length,
                   itemBuilder: (_, i) {
@@ -59,8 +59,8 @@ class HomeScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         pagarBloc.add(OnSeleccionarTarjeta(tarjeta));
-                        Navigator.push(
-                            context, navegarFadeIn(context, TarjetaScreen()));
+                        Navigator.push(context,
+                            navegarFadeIn(context, const TarjetaScreen()));
                       },
                       child: Hero(
                         tag: tarjeta.cardNumber,
@@ -71,13 +71,13 @@ class HomeScreen extends StatelessWidget {
                           cardHolderName: tarjeta.cardHolderName,
                           cvvCode: tarjeta.cvv,
                           showBackView: false,
-                          onCreditCardWidgetChange: (CreditCardBrand) {},
+                          onCreditCardWidgetChange: (creditCardBrand) {},
                         ),
                       ),
                     );
                   }),
             ),
-            Positioned(bottom: 0, child: TotalPayButton())
+            const Positioned(bottom: 0, child: TotalPayButton())
           ],
         ));
   }

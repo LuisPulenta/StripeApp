@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -8,7 +7,7 @@ part 'pagar_event.dart';
 part 'pagar_state.dart';
 
 class PagarBloc extends Bloc<PagarEvent, PagarState> {
-  PagarBloc() : super(PagarState()) {
+  PagarBloc() : super(const PagarState()) {
     on<OnSeleccionarTarjeta>(_onSeleccionarTarjeta);
     on<OnDesactivarTarjeta>(_onDesactivarTarjeta);
   }

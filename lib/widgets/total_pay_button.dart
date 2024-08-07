@@ -9,6 +9,8 @@ import 'package:stripeapp/helpers/helpers.dart';
 import 'package:stripeapp/services/stripe_service.dart';
 
 class TotalPayButton extends StatelessWidget {
+  const TotalPayButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -34,7 +36,7 @@ class TotalPayButton extends StatelessWidget {
               const Text('Total',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               Text('${pagarBloc.montoPagar} ${pagarBloc.moneda}',
-                  style: TextStyle(fontSize: 20))
+                  style: const TextStyle(fontSize: 20))
             ],
           ),
           BlocBuilder<PagarBloc, PagarState>(
@@ -134,7 +136,7 @@ class _BtnPay extends StatelessWidget {
           final stripeService = StripeService();
           final state = BlocProvider.of<PagarBloc>(context).state;
 
-          final resp = await stripeService.pagarApplePayGooglePay(
+          await stripeService.pagarApplePayGooglePay(
               state.montoPagarString, state.moneda);
         });
   }

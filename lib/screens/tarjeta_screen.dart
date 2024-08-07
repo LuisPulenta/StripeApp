@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:stripeapp/bloc/pagar/pagar_bloc.dart';
-
-import 'package:stripeapp/models/tarjeta_credito.dart';
 import 'package:stripeapp/widgets/total_pay_button.dart';
 
 class TarjetaScreen extends StatelessWidget {
@@ -19,7 +17,7 @@ class TarjetaScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Pagar'),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             onPressed: () {
               pagarBloc.add(OnDesactivarTarjeta());
               Navigator.pop(context);
@@ -28,8 +26,9 @@ class TarjetaScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: Stack(
+          fit: StackFit.expand,
           children: [
-            Container(),
+            //Container(),
             Hero(
               tag: tarjeta!.cardNumber,
               child: CreditCardWidget(
@@ -39,10 +38,10 @@ class TarjetaScreen extends StatelessWidget {
                 cardHolderName: tarjeta.cardHolderName,
                 cvvCode: tarjeta.cvv,
                 showBackView: false,
-                onCreditCardWidgetChange: (CreditCardBrand) {},
+                onCreditCardWidgetChange: (creditCardBrand) {},
               ),
             ),
-            Positioned(bottom: 0, child: TotalPayButton())
+            const Positioned(bottom: 0, child: TotalPayButton())
           ],
         ));
   }
